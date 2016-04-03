@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<style>
+			#demo-frame > div.demo { padding: 10px !important; };
+		</style>
+		<link rel="stylesheet" type="text/css" href="visualizer.css"></script>
+		<link rel="stylesheet" type="text/css" href="jqueryui/css/smoothness/jquery-ui-1.7.2.custom.css">
+		<script type="text/javascript" src="jqueryui/js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="jqueryui/js/jquery-ui-1.7.2.custom.min.js"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="visualizer.js"></script>
+		<script type="text/javascript" src="controls.js"></script>
+		<script type="text/javascript">
+			function initialize() {
+				// generating bases
+				// bases are indexed by segment id (for now)
+				var bases = new Array();
+				// generating calls.  calls need to be indexed in order starting from 0.  So all calls are pushed onto the array
+				var calls = [];
+				bases[775] = new Base(16.96194444,77.80888889, genBasicBaseInfo('AP28TA3122', '775', '121.604938'), 1,'#00FF00');
+bases[685] = new Base(17.44111111,77.70916667, genBasicBaseInfo('AP29U4235', '685', '476.529412'), 1,'#00FF00');
+bases[678] = new Base(17.30472222,78.13694444, genBasicBaseInfo('AP29TA4909', '678', '326.93913'), 1,'#00FF00');
+bases[1112] = new Base(17.3891379,77.8367282, genBasicBaseInfo('AP29TA3771', '1112', '257.048611'), 1,'#00FF00');
+bases[5490] = new Base(17.21333333,77.64305556, genBasicBaseInfo('AP28W8684', '5490', '-1'), 1,'#00FF00');
+bases[5507] = new Base(17.4521411,78.3303469, genBasicBaseInfo('AP29TA4911', '5507', '251.958621'), 1,'#00FF00');
+bases[686] = new Base(16.92333333,77.80722222, genBasicBaseInfo('AP29TA3719', '686', '286.816514'), 1,'#00FF00');
+bases[467] = new Base(17.44972222,78.68444444, genBasicBaseInfo('AP29U6089', '467', '219.346369'), 1,'#00FF00');
+bases[5484] = new Base(17.39277778,78.69138889, genBasicBaseInfo('AP29U5017', '5484', '-1'), 1,'#00FF00');
+bases[779] = new Base(17.5239154,78.4702215, genBasicBaseInfo('AP28W9300', '779', '183.729858'), 1,'#00FF00');
+bases[1228] = new Base(17.06388889,78.49083333, genBasicBaseInfo('AP29TA3649', '1228', '341.805825'), 1,'#00FF00');
+bases[556] = new Base(17.52166667,78.66944444, genBasicBaseInfo('AP29TA3325', '556', '314.855856'), 1,'#00FF00');
+bases[780] = new Base(17.25611111,77.56, genBasicBaseInfo('AP29TA3331', '780', '268.738806'), 1,'#00FF00');
+bases[781] = new Base(17.47305556,78.42305556, genBasicBaseInfo('AP29TA3306', '781', '145.949807'), 1,'#00FF00');
+bases[5477] = new Base(17.0125,77.87694444, genBasicBaseInfo('AP29U6222', '5477', '182.645503'), 1,'#00FF00');
+bases[5482] = new Base(17.35222222,78.57333333, genBasicBaseInfo('AP28W4643', '5482', '129.016949'), 1,'#00FF00');
+bases[254] = new Base(17.13222222,78.43611111, genBasicBaseInfo('AP29U6434', '254', '250.219697'), 1,'#00FF00');
+bases[5499] = new Base(17.42944444,78.58694444, genBasicBaseInfo('AP28W8394', '5499', '258.125874'), 1,'#00FF00');
+bases[1370] = new Base(17.33472222,78.32861111, genBasicBaseInfo('AP29U4226', '1370', '-1'), 1,'#00FF00');
+bases[962] = new Base(17.51694444,77.89916667, genBasicBaseInfo('AP29U4250', '962', '314.513043'), 1,'#00FF00');
+bases[698] = new Base(17.17388889,77.87638889, genBasicBaseInfo('AP29U6191', '698', '310.893805'), 1,'#00FF00');
+bases[5512] = new Base(17.33861111,77.66194444, genBasicBaseInfo('AP29U4240', '5512', '260.5'), 1,'#00FF00');
+bases[5517] = new Base(17.32416667,78.41805556, genBasicBaseInfo('AP29TA3107', '5517', '166.87013'), 1,'#00FF00');
+bases[1345] = new Base(17.36527778,78.52888889, genBasicBaseInfo('AP29TA3300', '1345', '172.158798'), 1,'#00FF00');
+bases[704] = new Base(17.16194444,78.13333333, genBasicBaseInfo('AP29U4238', '704', '410.445946'), 1,'#00FF00');
+bases[253] = new Base(17.59416667,78.57666667, genBasicBaseInfo('AP29U4685', '253', '275.536765'), 1,'#00FF00');
+bases[5493] = new Base(17.26,78.3975, genBasicBaseInfo('AP28TA3617', '5493', '283.579832'), 1,'#00FF00');
+bases[682] = new Base(17.45166667,78.13305556, genBasicBaseInfo('AP29TA3484', '682', '327.140187'), 1,'#00FF00');
+bases[245] = new Base(17.29638889,77.54305556, genBasicBaseInfo('AP29TA3712', '245', '222.520468'), 1,'#00FF00');
+bases[658] = new Base(17.33777778,77.91777778, genBasicBaseInfo('AP29TA3106', '658', '263.643411'), 1,'#00FF00');
+bases[5479] = new Base(17.21333333,77.64305556, genBasicBaseInfo('AP29U4236', '5479', '235.398734'), 1,'#00FF00');
+bases[799] = new Base(17.37546,78.500611, genBasicBaseInfo('AP29TA3105', '799', '359.94'), 1,'#00FF00');
+bases[1023] = new Base(17.441691,78.445357, genBasicBaseInfo('AP28TA2991', '1023', '144.703297'), 1,'#00FF00');
+bases[865] = new Base(17.369309,78.458476, genBasicBaseInfo('AP28W8392', '865', '172.687117'), 1,'#00FF00');
+bases[847] = new Base(17.343823,78.546005, genBasicBaseInfo('AP28TA2981', '847', '230.662722'), 1,'#00FF00');
+bases[1247] = new Base(17.434774,78.527878, genBasicBaseInfo('AP28W9036', '1247', '-1'), 1,'#00FF00');
+bases[5515] = new Base(17.416231,78.450073, genBasicBaseInfo('AP28W4790', '5515', '280.97037'), 1,'#00FF00');
+bases[792] = new Base(17.389275,78.499197, genBasicBaseInfo('AP29TA4985', '792', '150.730038'), 1,'#00FF00');
+bases[788] = new Base(17.41124,78.464441, genBasicBaseInfo('AP28TA2980', '788', '402.617284'), 1,'#00FF00');
+bases[789] = new Base(17.393869,78.46773, genBasicBaseInfo('AP28TA3631', '789', '153.779923'), 1,'#00FF00');
+bases[826] = new Base(17.437208,78.543424, genBasicBaseInfo('AP29TA3330', '826', '217.472222'), 1,'#00FF00');
+bases[802] = new Base(17.38015,78.42063, genBasicBaseInfo('AP29TA3650', '802', '218.664773'), 1,'#00FF00');
+bases[803] = new Base(17.389585,78.452248, genBasicBaseInfo('AP29TA3487', '803', '164.02449'), 1,'#00FF00');
+bases[790] = new Base(17.443587,78.490679, genBasicBaseInfo('AP29TA3301', '790', '83.483673'), 1,'#00FF00');
+bases[897] = new Base(17.414488,78.483013, genBasicBaseInfo('AP29TA3630', '897', '190.165049'), 1,'#00FF00');
+bases[797] = new Base(17.340561,78.50696, genBasicBaseInfo('AP28W4644', '797', '263.714286'), 1,'#00FF00');
+bases[5495] = new Base(17.421311,78.526009, genBasicBaseInfo('AP29TA4705', '5495', '186.084507'), 1,'#00FF00');
+bases[1042] = new Base(17.472339,78.509663, genBasicBaseInfo('AP28W3817', '1042', '177.651163'), 1,'#00FF00');
+bases[446] = new Base(18.05019,78.2647, genBasicBaseInfo('AP29U6122', '446', '-1'), 1,'#00FF00');
+bases[1323] = new Base(17.04776,80.09819, genBasicBaseInfo('AP29U6160', '1323', '-1'), 1,'#00FF00');
+bases[5497] = new Base(17.08611111,77.83611111, genBasicBaseInfo('AP28W9035', '5497', '405.140625'), 1,'#00FF00');
+bases[1361] = new Base(17.19333333,78.64805556, genBasicBaseInfo('AP28TA3656', '1361', '211.533742'), 1,'#00FF00');
+bases[783] = new Base(17.45916667,78.54611111, genBasicBaseInfo('AP28W9034', '783', '140.309091'), 1,'#00FF00');
+bases[5494] = new Base(17.62833333,78.48305556, genBasicBaseInfo('AP29U4225', '5494', '-1'), 1,'#00FF00');
+bases[787] = new Base(17.42222222,78.55833333, genBasicBaseInfo('AP29U4259', '787', '118.760656'), 1,'#00FF00');
+bases[805] = new Base(17.331605,78.470063, genBasicBaseInfo('AP28W9202', '805', '321.747748'), 1,'#00FF00');
+bases[795] = new Base(17.426145,78.452267, genBasicBaseInfo('AP29TA3691', '795', '177.759091'), 1,'#00FF00');
+bases[796] = new Base(17.372775,78.499138, genBasicBaseInfo('AP28W7689', '796', '216.702857'), 1,'#00FF00');
+bases[5496] = new Base(17.045,78.66611111, genBasicBaseInfo('AP29U6432', '5496', '347.49'), 1,'#00FF00');
+// starting simulation
+				Visualizer.start("map_canvas", calls, bases, new Date(2010,11-1,01,00,03,17,0), new Date(2010,12-1,01,02,12,06,0), refreshControls);
+				// initializing controls such as slider bar. This needs to be called after Visualizer starts
+				initControls();
+			}
+		</script>
+	</head>
+	<body onload="initialize()">
+		<div id="map_canvas" style="width:100%; height:100%;"></div>
+		<div id="slider_container">
+			<center>
+				<div name="slider" id="slider"></div>
+				<input type="text" id="txt" style="width:260px;">
+				<button id="start_stop">play/pause</button>
+			</center>
+		</div>
+	</body>
+</html>
